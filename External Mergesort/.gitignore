@@ -1,0 +1,6 @@
+f1.txt
+.DS_Store
+sub_file_*
+*.out
+*.o
+output_file_*

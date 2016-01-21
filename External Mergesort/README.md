@@ -42,18 +42,14 @@ f1.txt is a large file which I didn't show in the tests cases for simplicity pur
 1. Sort all the files. 
 
 	parseValidFile()
-
-	Breaks files into sortable chunks (sub_file_*) if whole file is too large to sort
-
-	Writes all sub_file_* into list of files to be sorted 
+	- Breaks files into sortable chunks (sub_file_*) if whole file is too large to sort
+	- Writes all sub_file_* into list of files to be sorted 
 
 2. Merge sorted files and into one file 
 
 	mergeFiles(): 
-
-	Reads list of files from two files (current_file and new_file) until only one filename remains in both files 
-
-	Calls mergeSortedFiles(file1, file2, output_file) on two files read in to generate an output_file (sorted and merged f1, f2)
+	- Reads list of files from two files (current_file and new_file) until only one filename remains in both files 
+	- Calls mergeSortedFiles(file1, file2, output_file) on two files read in to generate an output_file (sorted and merged f1, f2)
 
 3. Deletes intermediate output_file_*, and sub_file_*, etc generated
 	

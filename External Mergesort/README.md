@@ -7,7 +7,7 @@ Given a file containing a list of files/command line prompt to enter a list of f
 	$ ./main -f (file with list of filenames to merge) OR ./main -l
 
 Test to illustrate the merge and sort if you execute the following: 
-	$ ./main -f files.txt
+	$ ./main -f test_1.txt
 
 ###Essential files: 
 main.cpp - Program that extracts command line arguments to merge/sort files
@@ -25,7 +25,7 @@ cout statements included to better follow the program. Your output file will be 
 
 
 ###Notes: 
-f1.txt is a large file which I didn't show in the tests cases for simplicity purposes. If you'd like to see what happens with a large file, include "f1.txt" in files.txt
+f1.txt is a large file which I didn't show in the tests cases for simplicity purposes. If you'd like to see what happens with a large file, include "f1.txt" in test_1.txt
 
 ###Design: 
 - Reason for using fstreams vs data structures is to limit memory use to hold this information (i.e. filenames of files to be merged). 

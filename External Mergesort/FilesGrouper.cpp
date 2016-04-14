@@ -130,7 +130,7 @@ void FilesGrouper::deleteGeneratedFiles(int output_file_count) {
 
 	// Delete intermediate output files (not final file)
 	for (int i = 0; i < (output_file_count - 2); ++i) 
-		remove(("output_file_" + to_string(i)).c_str()); 
+		remove(("output_file_" + to_string(i)).c_str());
 
 	// Delete copy files 
 	if (duplicate_original_file) {
@@ -169,7 +169,7 @@ bool FilesGrouper::sortFile(string file) {
 */
 void FilesGrouper::mergeFiles() {
 	ifstream fs_ptr(current_file); 
-	ofstream backup(new_file); 
+	ofstream backup(new_file); // this is the file you're writing the sorted information into
 
 	int count = 0; 
 	string file1, file2, output_file = "output_file_"; 
@@ -185,10 +185,10 @@ void FilesGrouper::mergeFiles() {
 			} 
 
 			// If file2 fails to read, then we know file1 is out output 
-			if (getline(fs_ptr, file2)) {		
+			if (getline(fs_ptr, file2)) {
+				cout << "Merging: " << file1 << ", " << file2 << " into " << (output_file + to_string(count)) << "\n";
 				mergeSortedFiles(file1, file2, (output_file + to_string(count))); 	
 				backup << (output_file + to_string(count)) << "\n"; 
-				cout << "Merging: " << file1 << ", " << file2 << " into " << (output_file + to_string(count)) << "\n";
 			} else {
 				end = true; 
 				final_output = file1; 
@@ -199,18 +199,18 @@ void FilesGrouper::mergeFiles() {
 				backup << (output_file + to_string(count)) << "\n"; 
 			} else {
 				switchFstreams(&fs_ptr, &backup); 
-
 				if (getline(fs_ptr, file2)) {		// second file to merge in next file 
 					mergeSortedFiles(file1, file2, (output_file + to_string(count))); 
 					backup << (output_file + to_string(count)) << "\n"; 
 				} else {							// first extract file is final merged file 
 					end = true; 
+					// write everything into this output file?? 
 					final_output = (output_file + to_string(count)); 
 					// Since we could only read one file to be merged, this file is the merged output
+					mergeSortedFiles(file1, "", final_output); 
 				}
 			}
 			cout << "Merging: " << file1 << ", " << file2 << " into " << (output_file + to_string(count)) << "\n";
-
 		}
 
 		count += 1; 
